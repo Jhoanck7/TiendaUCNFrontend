@@ -1,51 +1,48 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getProducts, Product } from "@/services/products";
-import Link from "next/link";
+import { getProductById, Product } from "@/services/products";
+import { useCartStore } from "@/store/cart";
 
-export default function ProductsPage() {
-  const [data, setData] = useState<Product[]>([]);
+interface Props {
+  params: { id: string };
+}
+
+export default function ProductDetailPage({ params }: Props) {
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const addItem = useCartStore((state) => state.addItem);
 
   useEffect(() => {
-    getProducts()
-      .then((r) => setData(r.data))
-      .catch((e) => {
-        console.error(e);
-        setError("Error al cargar productos");
-      })
+    getProductById(params.id)
+      .then((r) => setProduct(r.data))
+      .catch((e) => console.error("Error cargando producto:", e))
       .finally(() => setLoading(false));
-  }, []);
+  }, [params.id]);
 
-  if (loading)
-    return (
-      <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(3, 1fr)" }}>
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} style={{ padding: 16, background: "#f3f3f3", borderRadius: 8, height: 140 }} />
-        ))}
-      </div>
-    );
-
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (loading) return <p>Cargando producto...</p>;
+  if (!product) return <p>Producto no encontrado.</p>;
 
   return (
-    <div>
-      <h1>Productos</h1>
+    <div style={{ padding: 20 }}>
+      <h1>{product.name}</h1>
+      <p style={{ marginTop: 10 }}>Precio: {product.price} CLP</p>
+      <p style={{ marginTop: 10 }}>{product.description}</p>
 
-      <div style={{ marginTop: 20, display: "grid", gap: 20, gridTemplateColumns: "repeat(3, 1fr)" }}>
-        {data.length === 0 && <p>No hay productos disponibles.</p>}
-        {data.map((p) => (
-          <div key={p.id} style={{ border: "1px solid #ddd", borderRadius: 8, padding: 16 }}>
-            <h3>{p.name}</h3>
-            <p>Precio: {p.price} CLP</p>
-            <Link href={`/products/${p.id}`}>
-              <button style={{ marginTop: 10 }}>Ver más</button>
-            </Link>
-          </div>
-        ))}
-      </div>
+      <button
+        style={{ marginTop: 20 }}
+        onClick={() =>
+          addItem({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+          })
+        }
+      >
+        Agregar al carrito
+      </button>
     </div>
   );
 }
+
