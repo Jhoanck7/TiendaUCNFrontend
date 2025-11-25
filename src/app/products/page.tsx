@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getProductById, Product } from "@/services/products";
-import { useCartStore } from "@/store/cart";
+import { useCartStore } from "@/src/store/cart";
 
 interface Props {
   params: { id: string };
@@ -16,7 +16,7 @@ export default function ProductDetailPage({ params }: Props) {
   useEffect(() => {
     getProductById(params.id)
       .then((r) => setProduct(r.data))
-      .catch((err) => console.error(err))
+      .catch((e) => console.error("Error cargando producto:", e))
       .finally(() => setLoading(false));
   }, [params.id]);
 
@@ -24,11 +24,13 @@ export default function ProductDetailPage({ params }: Props) {
   if (!product) return <p>Producto no encontrado.</p>;
 
   return (
-    <div>
+    <div style={{ padding: 20 }}>
       <h1>{product.name}</h1>
-      <p>Precio: {product.price}</p>
+      <p style={{ marginTop: 10 }}>Precio: {product.price} CLP</p>
+      <p style={{ marginTop: 10 }}>{product.description}</p>
 
       <button
+        style={{ marginTop: 20 }}
         onClick={() =>
           addItem({
             id: product.id,
@@ -43,3 +45,4 @@ export default function ProductDetailPage({ params }: Props) {
     </div>
   );
 }
+
