@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getProductById, Product } from "@/services/products";
-import { useCartStore } from "@/store/cart";
+import { useCartStore } from "@/src/store/cart";
 
 interface Props {
   params: { id: string };
