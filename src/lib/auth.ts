@@ -35,6 +35,7 @@ export function extractUserFromJwt(token: string) {
 }
 
 export function isTokenExpired(
+  //create customExp
   token: { customExp?: number } | null | undefined
 ): boolean {
   if (!token || !token.customExp) return true;

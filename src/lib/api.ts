@@ -14,6 +14,7 @@ export const handleApiError = (error: unknown): ApiErrorResult => {
     }
 
     // Not found error with custom format
+    //the backend should respond with data
     if (error.response.status === 404 && error.response.data) {
       const errorData = error.response.data as ErrorDetail;
       return {
@@ -38,7 +39,7 @@ export const handleApiError = (error: unknown): ApiErrorResult => {
       }
 
       const errorData = error.response.data as ErrorDetail;
-
+      //Response of backend:
       if (errorData.message === "Argumento fuera de rango") {
         return {
           message: "Producto no encontrado",
