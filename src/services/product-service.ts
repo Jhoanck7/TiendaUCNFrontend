@@ -19,7 +19,7 @@ export class ProductService extends BaseApiService {
    */
   getProductsForCustomer(params?: PaginationQueryParams) {
     return this.httpClient.get<ApiResponse<ProductListForCustomerResponse>>(
-      `${this.baseURL}/customer/products`,
+      `${this.baseURL}/products`,
       { params } as AxiosRequestConfig
     );
   }
@@ -30,7 +30,7 @@ export class ProductService extends BaseApiService {
    */
   getProductDetail(id: string) {
     return this.httpClient.get<ApiResponse<ProductDetailForCustomerResponse>>(
-      `${this.baseURL}/${id}`
+      `${this.baseURL}/products/${id}`
     );
   }
 }
