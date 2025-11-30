@@ -10,7 +10,7 @@ import {
 
 export class ProductService extends BaseApiService {
   constructor() {
-    super("/auth");
+    super("");
   }
   /**
    * Method for obtaining products for the customer
@@ -28,10 +28,11 @@ export class ProductService extends BaseApiService {
    * @param id of product
    * @returns data of product detail fromo the backend
    */
-  getProductDetail(id: string) {
-    return this.httpClient.get<ApiResponse<ProductDetailForCustomerResponse>>(
-      `${this.baseURL}/products/${id}`
+  async getProductDetail(id: string): Promise<ProductDetailForCustomerResponse> {
+    const response = await this.httpClient.get<ProductDetailForCustomerResponse>(
+      `/products/${id}`
     );
+    return response.data;
   }
 }
 
