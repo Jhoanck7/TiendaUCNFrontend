@@ -1,3 +1,4 @@
+import { Product } from './../../../services/products';
 export interface ProductForCustomerResponse {
     id: number;
     title: string;
@@ -16,16 +17,13 @@ export interface ProductListForCustomerResponse {
 
 
 export interface ProductDetailForCustomerResponse {
-    id: number;
-    title: string;
-    description: string;
-    imagesURL: string[];
-    price: string;
-    discount: number;
-    stock: number;
-    stockIndicator: string;
-    categoryName: string;
-    brandName: string;
-    statusName: string;
-    isAvailable: boolean
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discount: number;
+  finalPrice: number;
+  categoryName: string;
+  brandName: string;
+  imageUrls: string[];
 }
