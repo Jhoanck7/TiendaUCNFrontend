@@ -40,49 +40,31 @@ Built with **Next.js 14**, this frontend provides a fast, secure, and optimized 
 ---
 
 ## Project Structure
+```
 TiendaUCNFrontend/ 
-
 ├── app/ # App Router pages and UI components
-
 │ ├── products/ # Product list and detail pages 
-
 │ ├── cart/ # Shopping cart page 
-
 │ └── ... # Other public/private routes 
-
 │ 
-
 ├── lib/ # Shared utilities and helpers 
-
-
 │
 ├── services/ # Backend API communication layer
-
 │ ├── products.service.ts # Product CRUD and fetching
-
 │ ├── auth.service.ts # Login and registration
-
 │ └── ... # Additional services 
-
 │
-
 ├── store/ # Global application state (cart, products, etc.)
-
 │
-
 ├── public/ # Images and public assets
-
 │
-
 ├── middleware.ts # Route protection via JWT validation
-
 ├── next.config.ts # Next.js configuration file
-
 └── package.json
-
+```
 
 ---
-
+```
 ## Getting Started
 
 ### Prerequisites
@@ -90,29 +72,25 @@ TiendaUCNFrontend/
 - npm, pnpm, yarn, or bun (any package manager works)
 
 ### Installation
-```bash
+bash
 git clone <repository-url>
 cd TiendaUCNFrontend
 npm install
-
-Development Mode
-npm run dev
-
+```
+## Development Mode
+  npm run dev
 
 The app will be available at:
-http://localhost:3000
+  http://localhost:3000
 
-Backend Connection
-
+## Backend Connection
 This frontend is designed to connect to the TiendaUCN Backend API (ASP.NET Core).
-
 Configure the API URL in your environment variables:
+  .env.local
+    NEXT_PUBLIC_API_URL=http://localhost:5001/api
 
-.env.local
-NEXT_PUBLIC_API_URL=http://localhost:5001/api
-
-##Development
-Useful Scripts
+## Development
+### Useful Scripts
 | Script          | Description                   |
 | --------------- | ----------------------------- |
 | `npm run dev`   | Starts the development server |
@@ -120,26 +98,35 @@ Useful Scripts
 | `npm run start` | Runs the production build     |
 | `npm run lint`  | Runs the code linter          |
 
-###Testing
+### Testing
 (If tests are added later)
 You may include Jest, Playwright, or other testing frameworks.
 Deployment
-Deploy on Vercel
+### Deploy on Vercel
 Recommended due to native compatibility with Next.js.
 
-##teps:
-  1°Push your repository to GitHub
-  2°Import the repo into Vercel
-  3°Set environment variables:
-    NEXT_PUBLIC_API_URL=https://<your-backend-url>/api
-  4°Deployment will occur automatically.
+## teps:
+  1. Push your repository to GitHub
+  
+  2. Import the repo into Vercel
+  
+  3. Set environment variables:
+  
+      NEXT_PUBLIC_API_URL=https://<your-backend-url>/api
+      
+  4. Deployment will occur automatically.
 
-###Contributing
-  Fork the repository
-  Create a feature branch
-  Implement your changes
-  Submit a Pull Request
-  Wait for review
+## Contributing
+  - Fork the repository
+  - Create a feature branch
+  - Implement your changes
+  - Submit a Pull Request
+  - Wait for review
 
+## License
+This project is licensed under the MIT License, same as the backend.
+
+## Support
+For support and questions, please open an issue in the repository or contact the development team.
 
 
