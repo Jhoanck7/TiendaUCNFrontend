@@ -1,4 +1,3 @@
-import { Product } from './../../../services/products';
 export interface ProductForCustomerResponse {
     id: number;
     title: string;

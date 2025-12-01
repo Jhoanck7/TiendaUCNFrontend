@@ -1,4 +1,4 @@
-import { api } from "@/src/lib/axios";
+import { axiosInstance } from "@/providers";
 
 export type Product = {
   id: string | number;
@@ -9,9 +9,9 @@ export type Product = {
 };
 
 export const getProducts = () => {
-  return api.get<Product[]>("/products");
+  return axiosInstance.get<Product[]>('/products');
 };
 
 export const getProductById = (id: string) => {
-  return api.get<Product>(`/products/${id}`);
+  return axiosInstance.get<Product>(`/products/${id}`);
 };
