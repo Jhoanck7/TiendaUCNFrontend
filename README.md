@@ -40,18 +40,18 @@ Built with **Next.js 14**, this frontend provides a fast, secure, and optimized 
 ---
 
 ## Project Structure
-TiendaUCNFrontend/
+TiendaUCNFrontend/ 
 ├── app/ # App Router pages and UI components
-│ ├── products/ # Product list and detail pages
-│ ├── cart/ # Shopping cart page
-│ └── ... # Other public/private routes
-│
-├── lib/ # Shared utilities and helpers
+│ ├── products/ # Product list and detail pages 
+│ ├── cart/ # Shopping cart page 
+│ └── ... # Other public/private routes 
+│ 
+├── lib/ # Shared utilities and helpers 
 │
 ├── services/ # Backend API communication layer
 │ ├── products.service.ts # Product CRUD and fetching
 │ ├── auth.service.ts # Login and registration
-│ └── ... # Additional services
+│ └── ... # Additional services 
 │
 ├── store/ # Global application state (cart, products, etc.)
 │
@@ -60,6 +60,7 @@ TiendaUCNFrontend/
 ├── middleware.ts # Route protection via JWT validation
 ├── next.config.ts # Next.js configuration file
 └── package.json
+
 ---
 
 ## Getting Started
