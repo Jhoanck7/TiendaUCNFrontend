@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TiendaUCN Frontend
+
+A modern web interface for the e-commerce platform of the **Universidad Católica del Norte (UCN)**.  
+Built with **Next.js 14**, this frontend provides a fast, secure, and optimized user experience for product browsing, shopping cart management, authentication, and basic user operations.
+
+---
+
+## Features
+
+### Core Functionality
+- **Product Catalog**: Product listing, search, filtering, and detailed views.
+- **Shopping Cart**: Full cart management with persistent state.
+- **User Authentication**: Login, registration, and session handling.
+- **Checkout Flow**: Prepared to integrate with the backend order system.
+- **Modern & Responsive UI**: Clean, fast, and optimized for both desktop and mobile.
+
+### Technical Features
+- **Next.js App Router**: Modern architecture using the `/app` directory.
+- **TypeScript** for static typing and increased robustness.
+- **Centralized API Service Layer** located in `/services`.
+- **State Management** with a dedicated store for cart and products.
+- **Middleware** for route protection through authentication.
+- **Optimized assets** including images, fonts, and caching provided by Next.js.
+- **Direct connectivity with the TiendaUCN Backend API** (ASP.NET Core).
+
+---
+
+## Technology Stack
+
+| Category          | Technology           |
+|------------------|----------------------|
+| Framework        | Next.js 14           |
+| Language         | TypeScript           |
+| Styling          | CSS modules + Next.js optimizations |
+| State Management | Custom store (Cart + Products) |
+| API Layer        | Services using fetch + token handling |
+| Authentication   | Middleware + JWT from backend |
+| Build            | Vercel / Node.js     |
+
+---
+
+## Project Structure
+TiendaUCNFrontend/
+├── app/ # App Router pages and UI components
+│ ├── products/ # Product list and detail pages
+│ ├── cart/ # Shopping cart page
+│ └── ... # Other public/private routes
+│
+├── lib/ # Shared utilities and helpers
+│
+├── services/ # Backend API communication layer
+│ ├── products.service.ts # Product CRUD and fetching
+│ ├── auth.service.ts # Login and registration
+│ └── ... # Additional services
+│
+├── store/ # Global application state (cart, products, etc.)
+│
+├── public/ # Images and public assets
+│
+├── middleware.ts # Route protection via JWT validation
+├── next.config.ts # Next.js configuration file
+└── package.json
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+
+- npm, pnpm, yarn, or bun (any package manager works)
 
+### Installation
 ```bash
+git clone <repository-url>
+cd TiendaUCNFrontend
+npm install
+
+Development Mode
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app will be available at:
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Backend Connection
 
-## Learn More
+This frontend is designed to connect to the TiendaUCN Backend API (ASP.NET Core).
 
-To learn more about Next.js, take a look at the following resources:
+Configure the API URL in your environment variables:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+.env.local
+NEXT_PUBLIC_API_URL=http://localhost:5001/api
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+##Development
+Useful Scripts
+| Script          | Description                   |
+| --------------- | ----------------------------- |
+| `npm run dev`   | Starts the development server |
+| `npm run build` | Builds the app for production |
+| `npm run start` | Runs the production build     |
+| `npm run lint`  | Runs the code linter          |
 
-## Deploy on Vercel
+###Testing
+(If tests are added later)
+You may include Jest, Playwright, or other testing frameworks.
+Deployment
+Deploy on Vercel
+Recommended due to native compatibility with Next.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+##teps:
+  1°Push your repository to GitHub
+  2°Import the repo into Vercel
+  3°Set environment variables:
+    NEXT_PUBLIC_API_URL=https://<your-backend-url>/api
+  4°Deployment will occur automatically.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+###Contributing
+  Fork the repository
+  Create a feature branch
+  Implement your changes
+  Submit a Pull Request
+  Wait for review
+
+
+
