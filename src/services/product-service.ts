@@ -1,39 +1,44 @@
-import { ApiResponse } from "@/models/generics";
-import { AxiosRequestConfig } from "axios";
-import { PaginationQueryParams } from "@/models/requests";
-import { BaseApiService } from "./base-api-service";
-import {
-  ProductDetailForCustomerResponse,
-  //ProductListForAdminResponse,
-  ProductListForCustomerResponse,
-} from "@/models/responses";
-
-export class ProductService extends BaseApiService {
-  constructor() {
-    super("");
-  }
-  /**
-   * Method for obtaining products for the customer
-   * @param params The pagination parameter is sent
-   * @returns data of product from the backend
-   */
-  getProductsForCustomer(params?: PaginationQueryParams) {
-    return this.httpClient.get<ApiResponse<ProductListForCustomerResponse>>(
-      `${this.baseURL}/products`,
-      { params } as AxiosRequestConfig
-    );
-  }
-  /**
-   * Method for obtaining products details for the customer
-   * @param id of product
-   * @returns data of product detail fromo the backend
-   */
-  async getProductDetail(id: string): Promise<ProductDetailForCustomerResponse> {
-    const response = await this.httpClient.get<ProductDetailForCustomerResponse>(
-      `/products/${id}`
-    );
-    return response.data;
-  }
+export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  finalPrice: number;
+  mainImageUrl: string;
+  categoryName: string;
 }
 
-export const productService = new ProductService();
+export interface PaginationMeta {
+  totalPages: number;
+  currentPage: number;
+}
+
+export async function fetchProducts(params: {
+  page: number;
+  search?: string;
+}) {
+  const query = new URLSearchParams();
+  query.append("PageNumber", params.page.toString());
+  query.append("PageSize", "12");
+
+  if (params.search) {
+    query.append("SearchTerm", params.search);
+  }
+
+  const res = await fetch(
+    `http://localhost:5121/api/products?${query.toString()}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Error cargando productos");
+  }
+
+  const data = await res.json();
+
+  return {
+    items: data as Product[],
+    meta: {
+      totalPages: Number(res.headers.get("X-Pagination-TotalPages")),
+      currentPage: Number(res.headers.get("X-Pagination-CurrentPage")),
+    },
+  };
+}
