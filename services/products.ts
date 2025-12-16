@@ -1,4 +1,4 @@
-import { api } from "@/lib/axios";
+import { api } from "@/src/lib/axios";
 
 export type Product = {
   id: string | number;
